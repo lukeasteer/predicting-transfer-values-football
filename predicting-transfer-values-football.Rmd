@@ -1,0 +1,64 @@
+---
+title: "Predicting player transfer values in European football"
+output: html_notebook
+author: "Luke Steer"
+date: "2022-02-02"
+---
+
+### Business Understanding
+
+Relevant resources:
+http://guillaumeslizewicz.com/pdf/R.pdf 
+
+### Environment
+
+Required packages were loaded.
+
+```{r}
+# Tidyverse
+library(tidyverse)
+library(tidymodels)
+
+# Web scraping
+library(rvest)
+library(polite)
+
+# Python
+library(reticulate)
+
+#py_install("pandas")
+#py_install("bs4")
+#py_install("requests")
+```
+
+```{python}
+import pandas as pd
+from bs4 import BeautifulSoup
+import requests
+```
+
+### Data Acquisition
+
+```{python}
+# iterate from page 1 to page 2
+for pagenum in range(1, 2):
+    page = "https://www.transfermarkt.com/transfers/neuestetransfers/statistik?land_id=0&wettbewerb_id=GB1&minMarktwert=0&maxMarktwert=200000000&plus=1&page=" + str(pagenum)
+    page_tree = requests.get(page, headers = headers)
+    page_soup = BeautifulSoup(page_tree.content, 'html.parser')
+
+    players = page_soup.find_all("img", {"class": "bilderrahmen-fixed lazy lazy"})
+    age = page_soup.find_all("td", {"class": "zentriert"})
+    nationality = page_soup.find_all
+    selling_club =
+    selling_league = 
+    buying_club =
+    buying_league = 
+    market_value = 
+    transfer_value = page_soup.find_all("td", {"class": "rechts hauptlink"})
+```
+
+### Data Understanding
+
+### Modeling
+
+### Analysis
